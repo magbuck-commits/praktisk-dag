@@ -1,0 +1,21 @@
+{
+  "name": "Praktisk Dag",
+  "short_name": "PraktiskDag",
+  "description": "Kalender og dagsnoter med billeder til praktiske dage.",
+  "start_url": "./html/index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f7f3ff",
+  "theme_color": "#6c63ff",
+  "lang": "da",
+  "categories": ["productivity", "lifestyle"],
+  "icons": [
+    {
+      "src": "./icons/app-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

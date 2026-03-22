@@ -1,0 +1,12 @@
+# Logs
+*.log
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/
+
+# Node/Python artifacts (if used later)
+node_modules/
+__pycache__/
+*.pyc
