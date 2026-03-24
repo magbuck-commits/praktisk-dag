@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#6c63ff">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="PraktiskDag">
+    <title>Min Praktiske Kalender</title>
+    <link rel="manifest" href="../manifest.webmanifest">
+    <link rel="icon" href="../icons/app-icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="../icons/app-icon.svg">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <main class="app-shell">
+        <div class="top-nav top-nav--end">
+            <a href="./entries.html" class="book-btn" aria-label="Se mine tidligere indberettelser" title="Mine indberettelser">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true">
+                    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+                </svg>
+                <span class="book-btn-label">Min dagbog</span>
+            </a>
+        </div>
+        <section class="hero-card">
+            <p class="eyebrow">Praktisk dagbog</p>
+            <h1>Min praktiske kalender</h1>
+            <p class="hero-text">
+                Klik på en dag i kalenderen for at åbne den på sin egen side og gem billeder samt tekst om, hvordan din praktiske dag har set ud.
+            </p>
+        </section>
+
+        <section class="planner-grid">
+            <section class="panel calendar-panel">
+                <div class="calendar-toolbar">
+                    <button type="button" class="secondary-btn icon-btn" id="prev-month" aria-label="Forrige måned">←</button>
+                    <div>
+                        <h2 id="current-month">Måned år</h2>
+                        <p id="calendar-summary">Vælg en dato for at se eller tilføje indhold.</p>
+                    </div>
+                    <button type="button" class="secondary-btn icon-btn" id="next-month" aria-label="Næste måned">→</button>
+                </div>
+
+                <div class="weekday-row" aria-hidden="true">
+                    <span>Man</span>
+                    <span>Tir</span>
+                    <span>Ons</span>
+                    <span>Tor</span>
+                    <span>Fre</span>
+                    <span>Lør</span>
+                    <span>Søn</span>
+                </div>
+
+                <div id="calendar-grid" class="calendar-grid" role="grid" aria-label="Kalender"></div>
+
+                <div class="calendar-actions">
+                    <a href="./entries.html" class="btn btn-secondary">Se alle indberettelser</a>
+                </div>
+            </section>
+        </section>
+    </main>
+
+    <section id="day-modal" class="day-modal" hidden aria-hidden="true">
+        <div class="day-modal-backdrop" id="day-modal-backdrop"></div>
+        <div class="day-modal-card" role="dialog" aria-modal="true" aria-labelledby="selected-date-heading">
+            <div class="panel-header journal-header">
+                <div>
+                    <h2 id="selected-date-heading">Vælg en dag</h2>
+                    <p id="selected-date-subtitle">Klik på en dato i kalenderen for at skrive om dagen.</p>
+                </div>
+                <button type="button" class="secondary-btn close-btn" id="close-day-modal" aria-label="Luk dag">✕</button>
+            </div>
+
+            <form id="journal-form" novalidate>
+                    <label for="journal-text">Hvad lavede du denne dag?</label>
+                    <textarea id="journal-text" name="text" rows="5" placeholder="Skriv lidt om dagens opgaver, oplevelser eller hvad du lærte..." required></textarea>
+
+                    <label for="journal-images">Tilføj billeder</label>
+                    <input type="file" id="journal-images" name="images" accept="image/*" multiple>
+                    <p class="help-text">Du kan vælge flere billeder på samme dag.</p>
+
+                    <div id="image-preview" class="image-preview" hidden></div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="primary-btn" id="submit-button">Gem dag</button>
+                    </div>
+                </form>
+
+            <section id="entries-section" class="entries-section">
+                <div class="entries-header">
+                    <h3>Dagens indhold</h3>
+                    <p id="entry-count">Ingen opslag endnu</p>
+                </div>
+
+                <div id="empty-state" class="empty-state">
+                    <h3>Ingen opslag på denne dag</h3>
+                    <p>Tilføj tekst eller billeder for at starte din dagbog på denne dato.</p>
+                </div>
+
+                <div id="entry-list" class="entry-list" aria-live="polite"></div>
+            </section>
+        </div>
+    </section>
+
+    <script src="../js/pwa.js"></script>
+    <script src="../js/app.js"></script>
+</body>
+</html>
