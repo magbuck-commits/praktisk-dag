@@ -1,4 +1,4 @@
-const CACHE_NAME = 'praktisk-dag-v1';
+const CACHE_NAME = 'praktisk-dag-v2';
 const APP_SHELL = [
   './',
   './manifest.webmanifest',

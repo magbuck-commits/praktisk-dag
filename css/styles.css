@@ -746,3 +746,53 @@ button:hover {
         justify-content: center;
     }
 }
+
+/* ── Book button / top navigation ── */
+.top-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.top-nav--end {
+    justify-content: flex-end;
+}
+
+.book-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--primary-dark);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 11px 18px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(238, 232, 255, 0.88));
+    border: 1px solid rgba(108, 99, 255, 0.28);
+    box-shadow: 0 8px 20px rgba(82, 70, 180, 0.12);
+    transition: color 0.16s ease, background 0.16s ease, transform 0.16s ease, box-shadow 0.16s ease;
+    white-space: nowrap;
+}
+
+.book-btn:hover {
+    color: var(--primary);
+    background: linear-gradient(135deg, #ede8ff, #fce9f5);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(108, 99, 255, 0.22);
+}
+
+.book-btn:active {
+    transform: translateY(0);
+}
+
+@media (max-width: 480px) {
+    .book-btn-label {
+        display: none;
+    }
+
+    .book-btn {
+        padding: 11px 14px;
+    }
+}
