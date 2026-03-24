@@ -27,6 +27,14 @@ if (form && selectedDateHeading && selectedDateSubtitle && textInput && imageInp
     initializeDayPage();
 }
 
+const entriesSummary = document.getElementById('entries-summary');
+const entriesList = document.getElementById('entries-list');
+const noEntries = document.getElementById('no-entries');
+
+if (entriesList && entriesSummary && noEntries) {
+    initializeEntriesPage();
+}
+
 function initializeCalendarPage() {
     let selectedDate = isValidDateKey(searchParams.get('selected')) ? searchParams.get('selected') : null;
     let visibleMonth = parseMonthKey(searchParams.get('month'))
@@ -226,6 +234,70 @@ function initializeDayPage() {
 
         saveEntries();
     }
+}
+
+function initializeEntriesPage() {
+    const allDates = Object.keys(journalData)
+        .filter(dateKey => hasDayContent(dateKey))
+        .sort((a, b) => new Date(b) - new Date(a));
+
+    if (allDates.length === 0) {
+        noEntries.style.display = 'block';
+        entriesList.style.display = 'none';
+        entriesSummary.style.display = 'none';
+        return;
+    }
+
+    entriesSummary.textContent = `Du har ${allDates.length} indberettet dag${allDates.length !== 1 ? 'e' : ''}.`;
+    entriesList.innerHTML = '';
+
+    allDates.forEach(dateKey => {
+        const dayData = normalizeDayRecord(journalData[dateKey]);
+        const entryElement = document.createElement('div');
+        entryElement.className = 'entry-card';
+        
+        const dateElement = document.createElement('h3');
+        dateElement.className = 'entry-date';
+        dateElement.textContent = formatLongDate(dateKey);
+        entryElement.appendChild(dateElement);
+
+        if (dayData.images.length > 0) {
+            const imagesContainer = document.createElement('div');
+            imagesContainer.className = 'entry-images';
+            
+            dayData.images.slice(0, 3).forEach((image, index) => {
+                const img = document.createElement('img');
+                img.src = image;
+                img.alt = `Billede ${index + 1}`;
+                img.className = 'entry-thumbnail';
+                imagesContainer.appendChild(img);
+            });
+            
+            if (dayData.images.length > 3) {
+                const moreLabel = document.createElement('div');
+                moreLabel.className = 'entry-more-images';
+                moreLabel.textContent = `+${dayData.images.length - 3}`;
+                imagesContainer.appendChild(moreLabel);
+            }
+            
+            entryElement.appendChild(imagesContainer);
+        }
+
+        if (dayData.text) {
+            const textElement = document.createElement('p');
+            textElement.className = 'entry-text';
+            textElement.textContent = dayData.text.substring(0, 200) + (dayData.text.length > 200 ? '...' : '');
+            entryElement.appendChild(textElement);
+        }
+
+        const editLink = document.createElement('a');
+        editLink.href = `./day.html?date=${dateKey}`;
+        editLink.className = 'entry-link';
+        editLink.textContent = 'Åbn dag';
+        entryElement.appendChild(editLink);
+
+        entriesList.appendChild(entryElement);
+    });
 }
 
 function normalizeDayRecord(value) {

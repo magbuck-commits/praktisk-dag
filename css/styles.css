@@ -594,6 +594,124 @@ button:hover {
     color: var(--danger-dark);
 }
 
+/* Entries page styles */
+.entries-summary {
+    text-align: center;
+    margin-bottom: 24px;
+    padding: 16px;
+    background: rgba(108, 99, 255, 0.08);
+    border-radius: var(--radius-md);
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--primary);
+}
+
+.entries-list {
+    display: grid;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.entry-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 18px;
+    box-shadow: 0 4px 16px rgba(108, 99, 255, 0.06);
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.entry-card:hover {
+    box-shadow: 0 8px 24px rgba(108, 99, 255, 0.12);
+    transform: translateY(-2px);
+}
+
+.entry-date {
+    margin: 0 0 12px 0;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--primary);
+}
+
+.entry-images {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.entry-thumbnail {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+}
+
+.entry-more-images {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    border-radius: var(--radius-sm);
+    color: white;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.entry-text {
+    margin: 12px 0;
+    line-height: 1.5;
+    color: var(--text-soft);
+    font-size: 0.95rem;
+}
+
+.entry-link {
+    display: inline-block;
+    padding: 10px 16px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    font-weight: 500;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin-top: 8px;
+}
+
+.entry-link:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 16px rgba(108, 99, 255, 0.3);
+}
+
+.entry-link:active {
+    transform: scale(0.98);
+}
+
+.no-entries {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.no-entries p {
+    font-size: 1.1rem;
+    color: var(--text-soft);
+    margin-bottom: 24px;
+}
+
+.calendar-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+    justify-content: center;
+}
+
+.calendar-actions .btn-secondary {
+    flex: 0 1 auto;
+}
+
 @media (max-width: 820px) {
     .app-shell {
         width: min(100% - 20px, 720px);
